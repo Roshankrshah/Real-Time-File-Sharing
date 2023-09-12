@@ -14,20 +14,20 @@ io.on('connection',(socket)=>{
         socket.join(data.uid);
     });
 
-    socket.on("receiver-join",data=>{
+    socket.on("receiver-join",(data)=>{
         socket.join(data.uid);
         socket.in(data.sender_uid).emit('init',data.uid);
     });
 
-    socket.on('file-meta',data=>{
+    socket.on('file-meta',(data)=>{
         socket.in(data.uid).emit('fs-meta', data.metadata);
     });
 
-    socket.on('fs-start',data=>{
+    socket.on('fs-start',(data)=>{
         socket.in(data.uid).emit('fs-share', {});
     });
 
-    socket.on('fs-raw',data=>{
+    socket.on('file-raw',(data)=>{
         socket.in(data.uid).emit('fs-share', data.buffer);
     });
 
